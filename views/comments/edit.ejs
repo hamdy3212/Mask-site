@@ -1,0 +1,14 @@
+<%- include("../partials/header") %>
+
+<h1 class="d-flex justify-content-center my-3">Edit <%= mask.name %></h1>
+<div class="container mt-5" style="width: 30%;">
+	<form action="/masks/<%= mask._id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
+		<div class="form-group">
+			<input class="form-control" type="text" name="comment[text]" value="<%= comment.text %>">
+		</div>
+		<button class="btn btn-primary btn-block my-4" type="submit">Submit</button>
+	</form>
+</div>
+<button class="btn btn-dark"><a href="/masks">Back</a></button>
+
+<%- include("../partials/footer") %>

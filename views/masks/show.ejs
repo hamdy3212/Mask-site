@@ -1,0 +1,57 @@
+<%- include("../partials/header") %>
+
+<div class="container show-page mt-2">
+    <div class="row">
+        <div class="col-md-3 show-left">
+            <h3>Mask Website</h3>
+        </div>
+        <div class="col-md-9 show-right">
+            <div class="card">
+                <img src="<%=mask.image%>" class="img-responsive" >
+                <div class="caption row p-3">
+                    <div class="col-md-6 caption-left">
+                        <h3><a href="#"> <%= mask.name %> </a></h3>
+                    </div>
+                    <div class="col-md-6 caption-right">
+                        <h3 class="float-right">$<%= mask.price %></h3>
+                    </div>
+                    <div class="col-md-12">
+                        <p> <%= mask.description%> <br>
+                            <em> submitted by <%= mask.author.username %> </em>
+                        </p>
+                        <% if(currentUser && mask.author.id.equals(currentUser._id) ){ %>
+                            <form action="/masks/<%= mask.id %>?_method=DELETE" method="POST">
+                                <a class="btn btn-warning" href="/masks/<%= mask.id %>/edit"> Edit</a>
+                                <button class="btn btn-danger float-right" href="/masks/<%= mask.id %>/edit"> Delete</button>
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="card review-section mt-3">
+                <div class="new-review m-2">
+                    <a class="btn btn-success float-right" href="/masks/<%= mask.id %>/comments/new">add review</a>
+                </div>
+                <% for(const comment of mask.comments){ %>
+                    <div class="review container py-1">
+                        <span class="float-right">10 days ago</span>
+                        <strong><%= comment.author.username %></strong>
+                        <p> <%= comment.text %> </p>
+                        <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                            <form action="/masks/<%= mask.id %>/comments/<%= comment.id %>?_method=delete" method="POST">
+                                <a class="btn btn-warning" href="/masks/<%= mask.id %>/comments/<%= comment._id %>/edit">Edit</a>
+                                <button class="btn btn-danger float-right">Delete</button>
+                                <hr>
+                            </form>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<a class="btn btn-warning" href="/masks">Back</a> 
+
+<%- include("../partials/footer") %>

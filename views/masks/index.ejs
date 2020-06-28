@@ -1,0 +1,26 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+	<header class="jumbotron mt-2">
+		<h1> Welcome to my mask website </h1>
+		<p> View all masks from all over the world. </p>
+		<p> <a href="/masks/new" class="btn btn-success btn-large">Add new mask</a> </p>
+	</header>
+	<div class="row">
+		<% for(const mask of masks){ %>
+			<div class="col-sm-6 col-md-3 mb-3 d-flex justify-content-center">
+				<div class="card">
+					<img class="card-img-top" style="height: 200px;" src="<%= mask.image %>">
+					<div class="card-body">
+						<h3 class="card-text" style="text-align: center;"><%= mask.name %></h3>
+						<span class="d-flex justify-content-center mt-3">
+							<a href="/masks/<%= mask._id %>" class="btn btn-info">More Info</a>
+						</span>	
+					</div>
+				</div>
+			</div>
+		<% } %>
+	</div>
+</div>
+
+<%- include("../partials/footer") %>

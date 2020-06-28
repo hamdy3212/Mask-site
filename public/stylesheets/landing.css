@@ -1,0 +1,80 @@
+body {
+    background-color: #000;
+}
+
+#landing-header {
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    padding-top: 40vh;
+}
+
+#landing-header h1 {
+    color: #fff;
+}
+
+.slideshow { 
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.slideshow li { 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    animation: imageAnimation 50s linear infinite; 
+}
+.slideshow li:nth-child(1) { 
+    background-image: url(https://www.businessinsider.in/thumb.cms?msid=74489614&width=1200&height=900);
+}
+.slideshow li:nth-child(2) { 
+    background-image: url(https://www.sciencealert.com/images/2020-04/processed/mask_confusion_synd_1024.jpg);
+    animation-delay: 10s; 
+}
+.slideshow li:nth-child(3) { 
+    background-image: url(https://static01.nyt.com/images/2020/04/10/video/HowToMakeAMask_Cover_1/HowToMakeAMask_Cover_1-square640.jpg);
+    animation-delay: 20s; 
+}
+.slideshow li:nth-child(4) { 
+    background-image: url(https://www.bridgemi.com/sites/default/files/styles/article_hero_image/public/hero_images/maskdude.jpg?itok=CwNQycnR);
+    animation-delay: 30s; 
+}
+.slideshow li:nth-child(5) { 
+    background-image: url(https://i2.wp.com/media.globalnews.ca/videostatic/news/ikwxahae8a-ho0m7ezhi9/FINAL-HOMEMADEMASK.jpg?w=1040&quality=70&strip=all);
+    animation-delay: 40s; 
+}
+
+  @keyframes imageAnimation { 
+0% { 
+    opacity: 0; 
+    animation-timing-function: ease-in;
+}
+10% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+}
+20% {
+    opacity: 1;
+}
+30% {
+    opacity: 0;
+}
+}
+
+/* Older browser support - .no-cssanimations class added by modernizr */
+.no-cssanimations .slideshow li {
+	opacity: 1;
+}
