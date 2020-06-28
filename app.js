@@ -16,10 +16,16 @@ const express 		= require('express'),
 // APP CONFIG
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
-mongoose.connect('mongodb://localhost/my_database', {
+// mongoose.connect('mongodb://localhost/my_database', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// });
+mongoose.connect('mongodb+srv://hamdy:faster@cluster0-svqew.mongodb.net/masks?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+
+
 mongoose.set('useFindAndModify', false);
 app.use(express.static(__dirname + "/public"));
 // seedDB();
