@@ -12,19 +12,17 @@ const express 		= require('express'),
 	  commentRoutes = require('./routes/comments'),
 	  masksRoutes = require('./routes/masks'),
 	  indexRoutes = require('./routes/index');
-
+	  require('dotenv').config();
+	
 // APP CONFIG
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
-// mongoose.connect('mongodb://localhost/my_database', {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// });
-mongoose.connect('mongodb+srv://hamdy:faster@cluster0-svqew.mongodb.net/masks?retryWrites=true&w=majority', {
+
+mongoose.connect(process.env.DATABASEURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
-
+// mongodb+srv://hamdy:faster@cluster0-svqew.mongodb.net/masks?retryWrites=true&w=majority
 
 mongoose.set('useFindAndModify', false);
 app.use(express.static(__dirname + "/public"));
@@ -35,6 +33,7 @@ app.use(require('express-session')({
 	resave: false,
 	saveUninitialized: false
 }));
+
 app.use(flash()); 
 app.use(passport.initialize());
 app.use(passport.session());
